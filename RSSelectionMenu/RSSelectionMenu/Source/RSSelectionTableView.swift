@@ -155,7 +155,16 @@ extension RSSelectionTableView {
             self.selectionDelegate?.removeAllSelectedItems()
         }
     }
-    
+    //show search filter without search bar with search text
+    func filterDataWithTextSearch(searchText:String,completion: @escaping UISearchBarResult<T>){
+        self.searchBarResultDelegate = completion
+        if searchText.isEmpty {
+            self.selectionDataSource?.update(dataSource: (self.selectionDataSource?.dataSource)!, inTableView: self)
+        }else {
+            let filteredDataSource = self.searchBarResultDelegate!(searchText)
+            self.selectionDataSource?.update(dataSource: filteredDataSource, inTableView: self)
+        }
+    }
     // Add search bar
     func addSearchBar(placeHolder: String, barTintColor: UIColor, completion: @escaping UISearchBarResult<T>) {
         

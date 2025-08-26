@@ -335,6 +335,9 @@ extension RSSelectionMenu {
     public func showSearchBar(onTextDidSearch completion: @escaping UISearchBarResult<T>) {
         self.showSearchBar(withPlaceHolder: defaultPlaceHolder, barTintColor: defaultSearchBarTintColor, onTextDidSearch: completion)
     }
+    public func filterSearchData(onTextDidSearch textSearch:String, completion: @escaping UISearchBarResult<T>) {
+        self.tableView?.filterDataWithTextSearch(searchText: textSearch, completion: completion)
+    }
     
     public func showSearchBar(withPlaceHolder: String, barTintColor: UIColor, onTextDidSearch completion: @escaping UISearchBarResult<T>) {
         self.tableView?.addSearchBar(placeHolder: withPlaceHolder, barTintColor: barTintColor, completion: completion)
